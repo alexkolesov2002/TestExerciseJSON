@@ -6,24 +6,9 @@ using System.Threading.Tasks;
 
 namespace TestExerciseJSON.Data.Models
 {
-    class Person
+    internal class Person
     {
-        public Person(int id, Guid transportId, string firstName, string lastName, int sequenceId, string[] creditCardNumbers, int age, string[] phones, long birthDate, double salary, bool isMarred, Gender gender, Child[] children)
-        {
-            Id = id;
-            TransportId = transportId;
-            FirstName = firstName;
-            LastName = lastName;
-            SequenceId = sequenceId;
-            CreditCardNumbers = creditCardNumbers;
-            Age = age;
-            Phones = phones;
-            BirthDate = birthDate;
-            Salary = salary;
-            IsMarred = isMarred;
-            Gender = gender;
-            Children = children;
-        }
+
 
         public Int32 Id { get; set; }
         public Guid TransportId { get; set; }

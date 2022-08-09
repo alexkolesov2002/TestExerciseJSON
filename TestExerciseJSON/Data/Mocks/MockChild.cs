@@ -19,9 +19,9 @@ namespace TestExerciseJSON.Data.Mocks
                 List<Child> childList = new List<Child>();
                 Array values = Enum.GetValues(typeof(Gender));
                 Random random = new Random();
-
-
-                for (int i = 1; i <= 10000; i++)
+                DateTime dateStart = new DateTime(2002, 1, 1);
+              
+                for (int i = 1; i <= 40000; i++)
                 {
 
                     StringBuilder firstName = new StringBuilder();
@@ -43,10 +43,11 @@ namespace TestExerciseJSON.Data.Mocks
                     childList.Add(new Child
                     {
                         Id = i,
-                        BirthDate = POSIXDate.RandomDay(),
+                        BirthDate = POSIXDate.RandomDateForChild(dateStart),
                         Gender = randomGender,
                         FirstName = firstName.ToString(),
                         LastName = lastName.ToString(),
+                        
                     });
                 }
                 return childList;

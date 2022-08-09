@@ -15,9 +15,9 @@ namespace TestExerciseJSON
             //{
                 Console.WriteLine("Привет мир. Я - тестовое задание на обработку CSV файла, мой автор Колесов А.Д.");
                 Console.WriteLine("Для того что бы продолжить, нажмите любую клавишу");
-                //Console.ReadKey();
-                MockChild mockChild = new MockChild();
-                List<Child> children = mockChild.Children as List<Child>;
+            //Console.ReadKey();
+            MockPerson person = new MockPerson();
+            List<Person> personsList = person.Persons as List<Person>;
                 //for (int i = 0; i <= 100; i++)
                 //{
                 //    Console.Clear();
@@ -25,7 +25,7 @@ namespace TestExerciseJSON
                 //    Console.WriteLine(i + "%");
                 //    Thread.Sleep(10);  // в будущем ( если необходимо) можно добавить многопоточность
 
-                //}
+            //}
 
             //}
             //catch (Exception ex)

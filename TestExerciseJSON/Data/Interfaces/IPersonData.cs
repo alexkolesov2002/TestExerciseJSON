@@ -9,6 +9,6 @@ namespace TestExerciseJSON.Data.Interfaces
 {
     interface IPersonData
     {
-        IEnumerable<Person> Persons { get; set; }
+        IEnumerable<Person> Persons { get; }
     }
 }
