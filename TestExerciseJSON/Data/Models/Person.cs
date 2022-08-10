@@ -24,4 +24,6 @@ namespace TestExerciseJSON.Data.Models
         public Gender Gender { get; set; }
         public Child[] Children { get; set; }
     }
+
+    
 }

@@ -7,8 +7,11 @@ using TestExerciseJSON.Data.Models;
 
 namespace TestExerciseJSON.Data.Interfaces
 {
-    interface IPersonData
+    interface IJsonProcessing
     {
-        IEnumerable<Person> Persons { get; } 
+        public string SerializeJSON(IEnumerable<Person> Persons);
+
+        public dynamic DeserializeJSON(string Persons);
+
     }
 }

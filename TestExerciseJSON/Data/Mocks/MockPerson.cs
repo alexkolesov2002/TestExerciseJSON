@@ -11,6 +11,8 @@ namespace TestExerciseJSON.Data.Mocks
 {
     class MockPerson : IPersonData
     {
+        private bool disposedValue;
+
         public IEnumerable<Person> Persons {
 
 
@@ -18,11 +20,11 @@ namespace TestExerciseJSON.Data.Mocks
             get
             {
                 List<Person> personsList = new List<Person>();
-                Array values = Enum.GetValues(typeof(Gender));
+                Array valuesGender = Enum.GetValues(typeof(Gender));
                 Random random = new Random();
                 DateTime dateStart = new DateTime(1971, 1, 1);
                 MockChild mockChild = new MockChild();
-                List<Child> children = mockChild.Children as List<Child>;
+                List<Child> childrenList = mockChild.Children as List<Child>;
 
                 long POSIXTime;
                 for (int i = 1; i <= 10000; i++)
@@ -30,27 +32,27 @@ namespace TestExerciseJSON.Data.Mocks
                     POSIXTime = POSIXDate.RandomDateForPerson(dateStart);
                     StringBuilder firstName = new StringBuilder();
                     StringBuilder lastName = new StringBuilder();
-                    Gender randomGender = (Gender)values.GetValue(random.Next(values.Length));
+                    Gender randomGender = (Gender)valuesGender.GetValue(random.Next(valuesGender.Length));
 
-                    Child[] PersonChildren = new Child[random.Next(1,4)];
-                    string[] PersonPhones = new string [random.Next(1, 4)];
-                    string[] PersonCreditCardNumber = new string [random.Next(1, 4)];
+                    Child[] personChildren = new Child[random.Next(1,4)];
+                    string[] personPhones = new string [random.Next(1, 4)];
+                    string[] personCreditCardNumber = new string [random.Next(1, 4)];
                    
-                    for (int j = 0; j < PersonChildren.Length; j++)
+                    for (int j = 0; j < personChildren.Length; j++)
                     {
-                        int childId = random.Next(0, children.Count-1);
-                        PersonChildren[j] = children[childId];
-                        children.RemoveAt(childId);
+                        int childId = random.Next(0, childrenList.Count-1);
+                        personChildren[j] = childrenList[childId];
+                        childrenList.RemoveAt(childId);
                     }
 
-                    for (int x = 0; x < PersonPhones.Length; x++)
+                    for (int x = 0; x < personPhones.Length; x++)
                     {
-                        PersonPhones[x] = RandomData.CreatePhoneNumber();
+                        personPhones[x] = RandomData.CreatePhoneNumber();
                     }
 
-                    for (int x = 0; x < PersonCreditCardNumber.Length; x++)
+                    for (int x = 0; x < personCreditCardNumber.Length; x++)
                     {
-                        PersonCreditCardNumber[x] = RandomData.CreateCreditCardNumber();
+                        personCreditCardNumber[x] = RandomData.CreateCreditCardNumber();
                     }
 
                     if (randomGender == Gender.Male)
@@ -66,17 +68,7 @@ namespace TestExerciseJSON.Data.Mocks
                     lastName.Append(RandomData._lastNames[new Random().Next(0, RandomData._lastNames.Length)]);
                     DateTime asDateTime = new UnixTimestamp(POSIXTime);
 
-                    //int dur = (int)DateTime.Now.Month - (int)TimeSpan.FromSeconds(POSIXTime).TotalDays / 365 * 12 - 1970 * 12;
-                    //int age;
-                    //if (dur > 0)
-                    //{
-                    //    age = (int)DateTime.Now.Year - (int)TimeSpan.FromSeconds(POSIXTime).TotalDays / 365 - 1970;
-
-                    //}
-                    //else
-                    //{
-                    //    age = (int)DateTime.Now.Year - (int)TimeSpan.FromSeconds(POSIXTime).TotalDays / 365 - 1970 - 1;
-                    //}
+                   
                     personsList.Add(new Person
                     {
                         Id = i,
@@ -89,9 +81,9 @@ namespace TestExerciseJSON.Data.Mocks
                         IsMarred = random.Next(1) == 0,
                         Salary = Convert.ToDouble(random.Next(150000, 1000000)/10.0),
                         SequenceId =  i-1,
-                        Children = PersonChildren,
-                        Phones = PersonPhones,
-                        CreditCardNumbers = PersonCreditCardNumber
+                        Children = personChildren,
+                        Phones = personPhones,
+                        CreditCardNumbers = personCreditCardNumber
 
 
                     });;
@@ -100,11 +92,10 @@ namespace TestExerciseJSON.Data.Mocks
             }
 
 
-
-
-
         }
 
         
+
+      
     }
 }

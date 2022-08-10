@@ -7,8 +7,11 @@ using TestExerciseJSON.Data.Models;
 
 namespace TestExerciseJSON.Data.Interfaces
 {
-    interface IPersonData
+    internal interface IDisplayData
     {
-        IEnumerable<Person> Persons { get; } 
+        public static void DisplayResult(IEnumerable<Person> persinList)
+        {
+
+        }
     }
 }

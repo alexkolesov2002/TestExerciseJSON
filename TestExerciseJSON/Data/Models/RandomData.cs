@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestExerciseJSON.Classes;
+using TestExerciseJSON.Data.Interfaces;
 
 namespace TestExerciseJSON.Data.Models
 {
-    class RandomData
+    class RandomData: IDisplayData
     {
         public static Random random = new Random();
 
@@ -35,8 +37,28 @@ namespace TestExerciseJSON.Data.Models
             string result =   num.ToString() +" " + num1.ToString() + " " + num2.ToString() + " " + num3.ToString();
             return result;
         }
-      
-       
 
+        public static void DisplayResult(IEnumerable<Person> persinList)
+        {
+            
+
+            foreach (Person person in persinList)
+            {
+                List<int> childrenAge = new List<int>();
+                foreach (Child child in person.Children)
+                {
+                    DateTime asDateTime = new UnixTimestamp(child.BirthDate);
+                    int age = POSIXDate.GetDifferenceInYears(asDateTime, DateTime.Now);
+                    childrenAge.Add(age);
+                }
+                double avvrageAge = childrenAge.Average()*1.0;
+
+
+                Console.WriteLine($"{person.Id} - id пользователя, {person.CreditCardNumbers.Length} - количество крединтых карт пользователя, {avvrageAge}- Среднее значение возраста детей, {person.Children.Length} - Количество детей" );
+            }
+            
+        }
+
+       
     }
 }

@@ -11,34 +11,43 @@ namespace TestExerciseJSON
      /// </summary>
         static void Main()
         {
-            //try
-            //{
+            try
+            {
                 Console.WriteLine("Привет мир. Я - тестовое задание на обработку CSV файла, мой автор Колесов А.Д.");
                 Console.WriteLine("Для того что бы продолжить, нажмите любую клавишу");
-            //Console.ReadKey();
-            MockPerson person = new MockPerson();
-            List<Person> personsList = person.Persons as List<Person>;
-                //for (int i = 0; i <= 100; i++)
-                //{
-                //    Console.Clear();
-                //    Console.WriteLine("Подождите идет выполнение программы");
-                //    Console.WriteLine(i + "%");
-                //    Thread.Sleep(10);  // в будущем ( если необходимо) можно добавить многопоточность
+                ////Console.ReadKey();
+                MockPerson person = new MockPerson();
+                List<Person> personsList = person.Persons as List<Person>;
+                JsonSerializePerson jsonSerializePerson = new JsonSerializePerson();
+                var s = jsonSerializePerson.SerializeJSON(personsList);
+                personsList.Clear();
 
-            //}
+                JSONFileProcessing jSONFileProcessing = new JSONFileProcessing();
+                jSONFileProcessing.WriteInFile(s);
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.Clear();
-            //    Console.WriteLine(ex + "");
-            //}
-            //finally
-            //{
+                string notSerializeResult = jSONFileProcessing.ReadFile();
+                personsList = jsonSerializePerson.DeserializeJSON(notSerializeResult);
+                RandomData.DisplayResult(personsList);
+                Console.ReadKey();
 
-            //    Console.WriteLine("Мне понравилось ваше задание, если вы не против, я напомню еще раз о себе, и попрошу что-то еще. :) Спасибо");
-            //    Console.WriteLine("Файл с данными находится в папке Debug, с названием ResultInformation");
-            //}
+
+
+                GC.Collect();
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.Clear();
+                Console.WriteLine(ex + "");
+            }
+            finally
+            {
+
+                Console.WriteLine("Мне понравилось ваше задание, если вы не против, я напомню еще раз о себе, и попрошу что-то еще. :) Спасибо");
+               
+            }
 
         }
 
