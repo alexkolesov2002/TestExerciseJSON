@@ -10,7 +10,7 @@ using TestExerciseJSON.Data.Models;
 
 namespace TestExerciseJSON.Classes
 {
-    internal class JsonSerializePerson : IJsonProcessing
+    internal class JSONSerializePerson : IJsonProcessing
     {
         DefaultContractResolver contractResolver = new DefaultContractResolver
         {

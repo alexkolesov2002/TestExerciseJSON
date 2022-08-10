@@ -18,14 +18,14 @@ namespace TestExerciseJSON
                 ////Console.ReadKey();
                 MockPerson person = new MockPerson();
                 List<Person> personsList = person.Persons as List<Person>;
-                JsonSerializePerson jsonSerializePerson = new JsonSerializePerson();
+                JSONSerializePerson jsonSerializePerson = new JSONSerializePerson();
                 var s = jsonSerializePerson.SerializeJSON(personsList);
                 personsList.Clear();
 
-                JSONFileProcessing jSONFileProcessing = new JSONFileProcessing();
-                jSONFileProcessing.WriteInFile(s);
+                JSONFileProcessing JSONFileProcessing = new JSONFileProcessing();
+                JSONFileProcessing.WriteInFile(s);
 
-                string notSerializeResult = jSONFileProcessing.ReadFile();
+                string notSerializeResult = JSONFileProcessing.ReadFile();
                 personsList = jsonSerializePerson.DeserializeJSON(notSerializeResult);
                 RandomData.DisplayResult(personsList);
                 Console.ReadKey();

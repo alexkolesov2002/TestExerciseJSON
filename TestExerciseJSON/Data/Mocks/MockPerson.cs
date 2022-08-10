@@ -11,7 +11,7 @@ namespace TestExerciseJSON.Data.Mocks
 {
     class MockPerson : IPersonData
     {
-        private bool disposedValue;
+       
 
         public IEnumerable<Person> Persons {
 

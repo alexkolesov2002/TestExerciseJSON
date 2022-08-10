@@ -8,9 +8,9 @@ using TestExerciseJSON.Data.Interfaces;
 
 namespace TestExerciseJSON.Data.Models
 {
-    class RandomData: IDisplayData
+    class RandomData: IDisplayData, IDataAdded
     {
-        public static Random random = new Random();
+        private static Random random = new Random();
 
         public static string[] _maleNames = { "Jame", "Nick", "Alex", "Ostin" };
         public static string[] _femaleNames = { "Kate", "Kris", "Jill", "Elizabeth" };
