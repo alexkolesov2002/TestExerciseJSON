@@ -9,24 +9,30 @@ using TestExerciseJSON.Classes;
 
 namespace TestExerciseJSON.Data.Mocks
 {
+    /// <summary>
+    ///Class for populating a collection with objects of type Child
+    /// </summary>
     class MockChild : IChildData
     {
+        /// <summary>
+        /// Property that represents a collection of objects of type  Child
+        /// </summary>
         public IEnumerable<Child> Children
         {
-
+            
             get
             {
                 List<Child> childList = new List<Child>();
                 Array values = Enum.GetValues(typeof(Gender));
                 Random random = new Random();
-                DateTime dateStart = new DateTime(2002, 1, 1);
-              
+                DateTime dateStart = new DateTime(2002, 1, 1); //Minimum date of birth of child
+
                 for (int i = 1; i <= 40000; i++)
                 {
-
                     StringBuilder firstName = new StringBuilder();
                     StringBuilder lastName = new StringBuilder();
                     Gender randomGender = (Gender)values.GetValue(random.Next(values.Length));
+
 
                     if (randomGender == Gender.Male)
                     {
@@ -38,6 +44,7 @@ namespace TestExerciseJSON.Data.Mocks
                         firstName.Append(RandomData._femaleNames[new Random().Next(0, RandomData._femaleNames.Length)]);
                     }
 
+
                     lastName.Append(RandomData._lastNames[new Random().Next(0, RandomData._lastNames.Length)]);
 
                     childList.Add(new Child
@@ -47,7 +54,7 @@ namespace TestExerciseJSON.Data.Mocks
                         Gender = randomGender,
                         FirstName = firstName.ToString(),
                         LastName = lastName.ToString(),
-                        
+
                     });
                 }
                 return childList;

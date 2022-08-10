@@ -7,8 +7,14 @@ using TestExerciseJSON.Data.Models;
 
 namespace TestExerciseJSON.Data.Interfaces
 {
+    /// <summary>
+    /// representation of a collection of Person objects
+    /// </summary>
     interface IPersonData
-    {
-        IEnumerable<Person> Persons { get; } 
+
+    {   /// <summary>
+        /// Property that represents a collection of objects of type Person
+        /// </summary>
+        IEnumerable<Person> Persons { get; }
     }
 }

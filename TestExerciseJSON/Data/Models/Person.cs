@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TestExerciseJSON.Data.Models
 {
+    /// <summary>
+    /// Data model Person
+    /// </summary>
     internal class Person
     {
 

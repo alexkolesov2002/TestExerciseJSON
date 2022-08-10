@@ -7,8 +7,14 @@ using TestExerciseJSON.Data.Models;
 
 namespace TestExerciseJSON.Data.Interfaces
 {
+    /// <summary>
+    /// representation of a collection of Child objects
+    /// </summary>
     internal interface IChildData
-    {
+
+    {/// <summary>
+     /// Property that represents a collection of objects of type Child
+     /// </summary>
         IEnumerable<Child> Children { get; }
     }
 }

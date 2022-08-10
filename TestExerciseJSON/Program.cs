@@ -1,47 +1,41 @@
-﻿// See https://aka.ms/new-console-template for more information
-using TestExerciseJSON.Classes;
+﻿using TestExerciseJSON.Classes;
 using TestExerciseJSON.Data.Mocks;
 using TestExerciseJSON.Data.Models;
 
 namespace TestExerciseJSON
 {
     class Programm
-    {/// <summary>
-     /// Входная точка программы
-     /// </summary>
+    {
+        /// <summary>
+        /// Program entry point
+        /// </summary>
         async static Task Main()
         {
 
             try
             {
-                Console.WriteLine("Привет мир. Я - тестовое задание на обработку JSON файла, мой автор Колесов А.Д.");
-                Console.WriteLine("Для того что бы продолжить, нажмите любую клавишу");
-                ////Console.ReadKey();
-                MockPerson person = new MockPerson();
-                JSONFileProcessing JSONFileProcessing = new JSONFileProcessing();
-                if (person.Persons is List<Person> _personsList)
+                Console.WriteLine("Hello world. I am - testing exersize for processing JSON file, my author Kolesov A.D.");
+                Console.WriteLine("To continue, press any key");
+                Console.ReadKey();
+
+                MockPerson persons = new MockPerson();
+
+                if (persons.Persons is List<Person> _personsList)
                 {
-                    JSONSerializePerson JSONSerializePerson = new JSONSerializePerson();
-                    var s = JSONSerializePerson.SerializeJSON(_personsList);
+                    string PersonsInfoJson = JSONSerializePerson.SerializeJSON(_personsList);
+
                     _personsList.Clear();
+                    GC.Collect();
 
-
-                    if (await Task.Run(() => JSONFileProcessing.WriteInFile(s)) == true)
+                    if (await Task.Run(() => JSONFileProcessing.WriteInFile(PersonsInfoJson)) == true)
                     {
-                        string notSerializeResult = await JSONFileProcessing.ReadFile();
-                        _personsList = JSONSerializePerson.DeserializeJSON(notSerializeResult);
+                        string readResult = await JSONFileProcessing.ReadFile();
+                        _personsList = JSONSerializePerson.DeserializeJSON(readResult);
                         RandomData.DisplayResult(_personsList);
-                        Console.ReadKey();
                     }
                 }
-                 
-                
-
-
                 GC.Collect();
-
-
-
+                Console.ReadKey();
             }
             catch (Exception ex)
             {

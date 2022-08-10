@@ -6,29 +6,45 @@ using System.Threading.Tasks;
 
 namespace TestExerciseJSON.Classes
 {
+    /// <summary>
+    /// Provides methods for working with POSIX date
+    /// </summary>
     class POSIXDate
     {
-        static Random random = new Random();
-      
-        public static long RandomDateForChild(DateTime date)
+        private static Random random = new Random();
+        /// <summary>
+        /// Returns a specific date in POSIX format from a random range of dates for Child
+        /// </summary>
+        /// <param name="dateStart">Minimum due date</param>
+        /// <returns> Date in POSIX format </returns>
+        public static long RandomDateForChild(DateTime dateStart)
         {
-            int range = (DateTime.Today - date).Days;
-            DateTime days = date.AddDays(random.Next(range));
-            DateTimeOffset daysoff = new DateTimeOffset(days);
-            return daysoff.ToUnixTimeSeconds();
+            int range = (DateTime.Today - dateStart).Days;
+            DateTime days = dateStart.AddDays(random.Next(range));
+            DateTimeOffset daysOff = new DateTimeOffset(days);
+            return daysOff.ToUnixTimeSeconds();
         }
-
+        /// <summary>
+        /// Returns a specific date in POSIX format from a random range of dates for Person
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns>Date in POSIX format</returns>
         public static long RandomDateForPerson(DateTime date)
         {
-            int range = (new DateTime(2002,1,1) - date).Days;
+            int range = (new DateTime(2002, 1, 1) - date).Days; //Parent's minimum date of birth can be 2002
             DateTime days = date.AddDays(random.Next(range));
-            DateTimeOffset daysoff = new DateTimeOffset(days);
-            return daysoff.ToUnixTimeSeconds();
+            DateTimeOffset daysOff = new DateTimeOffset(days);
+            return daysOff.ToUnixTimeSeconds();
         }
-       
+        /// <summary>
+        /// Calculating the difference in years between two dates
+        /// </summary>
+        /// <param name="startDate"> Smaller date</param>
+        /// <param name="endDate">Biggest data</param>
+        /// <returns>Integer count year</returns>
         public static int GetDifferenceInYears(DateTime startDate, DateTime endDate)
         {
-            
+
             int years = endDate.Year - startDate.Year;
 
             if (startDate.Month == endDate.Month && endDate.Day < startDate.Day)
