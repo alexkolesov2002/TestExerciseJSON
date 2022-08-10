@@ -24,9 +24,9 @@ namespace TestExerciseJSON.Classes
             return resultSerialize;
         }
 
-        public  string SerializeJSON(IEnumerable<Person> Persons)
+        public  string SerializeJSON<T>(IEnumerable<T> obj)
         {
-            string Jsonstring = JsonConvert.SerializeObject(Persons, new JsonSerializerSettings
+            string Jsonstring = JsonConvert.SerializeObject(obj, new JsonSerializerSettings
             {
                 ContractResolver = contractResolver,
                 Formatting = Formatting.Indented

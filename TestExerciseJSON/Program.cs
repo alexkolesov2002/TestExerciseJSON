@@ -26,7 +26,7 @@ namespace TestExerciseJSON
                 JSONFileProcessing.WriteInFile(s);
 
                 string notSerializeResult = JSONFileProcessing.ReadFile();
-                personsList = jsonSerializePerson.DeserializeJSON(notSerializeResult);
+                personsList = jsonSerializePerson.DeserializeJSON(notSerializeResult) ;
                 RandomData.DisplayResult(personsList);
                 Console.ReadKey();
 
