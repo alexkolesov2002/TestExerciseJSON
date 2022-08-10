@@ -15,8 +15,6 @@ namespace TestExerciseJSON.Data.Mocks
 
         public IEnumerable<Person> Persons {
 
-
-
             get
             {
                 List<Person> personsList = new List<Person>();

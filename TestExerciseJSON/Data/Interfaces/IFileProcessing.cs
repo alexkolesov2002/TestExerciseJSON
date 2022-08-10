@@ -8,8 +8,15 @@ namespace TestExerciseJSON.Data.Interfaces
 {
     interface IFileProcessing
     {
-        public void WriteInFile(string JSONObject);
+        async public Task<bool> WriteInFile(string JSONObject)
+        {
+            return true;
+        }
 
-        public string ReadFile();
+        async public Task<string> ReadFile()
+        {
+            string readResult = "";
+            return readResult;
+        }
     }
 }

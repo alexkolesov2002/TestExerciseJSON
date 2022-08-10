@@ -12,7 +12,7 @@ namespace TestExerciseJSON.Classes
 {
     internal class JSONSerializePerson : IJsonProcessing
     {
-        DefaultContractResolver contractResolver = new DefaultContractResolver
+        private readonly DefaultContractResolver _contractResolver = new DefaultContractResolver
         {
             NamingStrategy = new  CamelCaseNamingStrategy()
             
@@ -20,15 +20,23 @@ namespace TestExerciseJSON.Classes
 
         public dynamic DeserializeJSON(string Persons)
         {
-            var resultSerialize = JsonConvert.DeserializeObject<List<Person>>(Persons);
-            return resultSerialize;
+            var resultSerialize = JsonConvert.DeserializeObject<IEnumerable<Person>>(Persons);
+            if (resultSerialize != null)
+            {
+                return resultSerialize;
+            }
+            else
+            {
+                return "";
+            }
+          
         }
 
         public  string SerializeJSON<T>(IEnumerable<T> obj)
         {
             string Jsonstring = JsonConvert.SerializeObject(obj, new JsonSerializerSettings
             {
-                ContractResolver = contractResolver,
+                ContractResolver = _contractResolver,
                 Formatting = Formatting.Indented
             });
             return Jsonstring;

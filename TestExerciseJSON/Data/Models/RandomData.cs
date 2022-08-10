@@ -8,9 +8,9 @@ using TestExerciseJSON.Data.Interfaces;
 
 namespace TestExerciseJSON.Data.Models
 {
-    class RandomData: IDisplayData, IDataAdded
+    class RandomData: IDataDisplay, IDataAdded
     {
-        private static Random random = new Random();
+        private static readonly Random random = new Random();
 
         public static string[] _maleNames = { "Jame", "Nick", "Alex", "Ostin" };
         public static string[] _femaleNames = { "Kate", "Kris", "Jill", "Elizabeth" };
@@ -54,7 +54,7 @@ namespace TestExerciseJSON.Data.Models
                 double avvrageAge = childrenAge.Average()*1.0;
 
 
-                Console.WriteLine($"{person.Id} - id пользователя, {person.CreditCardNumbers.Length} - количество крединтых карт пользователя, {avvrageAge}- Среднее значение возраста детей, {person.Children.Length} - Количество детей" );
+                Console.WriteLine($"{person.Id} - id пользователя, {person.CreditCardNumbers.Length} - количество крединтых карт пользователя, {Math.Round(avvrageAge,2)}- Среднее значение возраста детей, {person.Children.Length} - Количество детей" );
             }
             
         }

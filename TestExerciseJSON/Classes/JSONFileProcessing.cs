@@ -12,16 +12,20 @@ namespace TestExerciseJSON.Classes
     {
         string _path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
 
-        public string ReadFile()
+        async public Task<string> ReadFile()
         {
-            string readResult = File.ReadAllText(_path + @"\" + "Persons.json");
+           
+            var readResultAsync = File.ReadAllTextAsync(_path + @"\" + "Persons.json");
+            string readResult = await readResultAsync;
             return readResult;
         }
 
-        public void WriteInFile(string JSONObject)
+        async public Task<bool> WriteInFile(string JSONObject)
         {
-            
-            File.WriteAllText(_path + @"\" + "Persons.json", JSONObject);
+
+          await  File.WriteAllTextAsync(_path + @"\" + "Persons.json", JSONObject);
+          return true;
+
         }
     }
 }

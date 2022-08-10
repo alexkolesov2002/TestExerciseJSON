@@ -7,7 +7,7 @@ using TestExerciseJSON.Data.Models;
 
 namespace TestExerciseJSON.Data.Interfaces
 {
-    internal interface IDisplayData
+    internal interface IDataDisplay
     {
         public static void DisplayResult(IEnumerable<Person> persinList)
         {

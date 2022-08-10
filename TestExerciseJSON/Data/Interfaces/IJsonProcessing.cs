@@ -9,9 +9,9 @@ namespace TestExerciseJSON.Data.Interfaces
 {
     interface IJsonProcessing
     {
-        public string SerializeJSON<T>(IEnumerable<T> Persons);
+        public string SerializeJSON<T>(IEnumerable<T> obj);
 
-        public dynamic DeserializeJSON(string Persons);
+        public dynamic DeserializeJSON(string obj);
 
     }
 }
