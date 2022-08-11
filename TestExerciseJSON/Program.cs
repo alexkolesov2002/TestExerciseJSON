@@ -20,19 +20,22 @@ namespace TestExerciseJSON
 
                 MockPerson persons = new MockPerson();
 
-                if (persons.Persons is List<Person> _personsList)
+                if (persons.Persons != null && persons.Persons is List<Person> _personsList)
                 {
                     string PersonsInfoJson = JSONSerializePerson.SerializeJSON(_personsList);
-
                     _personsList.Clear();
                     GC.Collect();
 
-                    if (await Task.Run(() => JSONFileProcessing.WriteInFile(PersonsInfoJson)) == true)
+                    if (PersonsInfoJson != null)
                     {
-                        string readResult = await JSONFileProcessing.ReadFile();
-                        _personsList = JSONSerializePerson.DeserializeJSON(readResult);
-                        RandomData.DisplayResult(_personsList);
+                        if (await Task.Run(() => JSONFileProcessing.WriteInFile(PersonsInfoJson)) == true)
+                        {
+                            string readResult = await JSONFileProcessing.ReadFile();
+                            _personsList = JSONSerializePerson.DeserializeJSON(readResult);
+                            RandomData.DisplayResult(_personsList);
+                        }
                     }
+                   
                 }
                 GC.Collect();
                 Console.ReadKey();
@@ -40,7 +43,7 @@ namespace TestExerciseJSON
             catch (Exception ex)
             {
                 Console.Clear();
-                Console.WriteLine(ex + "");
+                Console.WriteLine(ex.ToString());
             }
             finally
             {

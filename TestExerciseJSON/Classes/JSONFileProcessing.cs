@@ -21,10 +21,18 @@ namespace TestExerciseJSON.Classes
         /// <returns>JSON string</returns>
         async static public Task<string> ReadFile()
         {
-
-            var readResultAsync = File.ReadAllTextAsync(_path + @"\" + "Persons.json");
-            string readResult = await readResultAsync;
-            return readResult;
+            try
+            {
+                var readResultAsync = File.ReadAllTextAsync(_path + @"\" + "Persons.json");
+                string readResult = await readResultAsync;
+                return readResult;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return "";
+            }
+            
         }
         /// <summary>
         /// Desktop file reading method
@@ -33,9 +41,16 @@ namespace TestExerciseJSON.Classes
         /// <returns>Boolean variable signaling completion</returns>
         async static public Task<bool> WriteInFile(string JSONObject)
         {
-
-            await File.WriteAllTextAsync(_path + @"\" + "Persons.json", JSONObject);
-            return true;
+            try
+            {
+                await File.WriteAllTextAsync(_path + @"\" + "Persons.json", JSONObject);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
 
         }
     }

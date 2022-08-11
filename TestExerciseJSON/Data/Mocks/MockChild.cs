@@ -22,42 +22,51 @@ namespace TestExerciseJSON.Data.Mocks
             
             get
             {
-                List<Child> childList = new List<Child>();
-                Array values = Enum.GetValues(typeof(Gender));
-                Random random = new Random();
-                DateTime dateStart = new DateTime(2002, 1, 1); //Minimum date of birth of child
-
-                for (int i = 1; i <= 40000; i++)
+                try
                 {
-                    StringBuilder firstName = new StringBuilder();
-                    StringBuilder lastName = new StringBuilder();
-                    Gender randomGender = (Gender)values.GetValue(random.Next(values.Length));
+                    List<Child> childList = new List<Child>();
+                    Array values = Enum.GetValues(typeof(Gender));
+                    Random random = new Random();
+                    DateTime dateStart = new DateTime(2002, 1, 1); //Minimum date of birth of child
 
-
-                    if (randomGender == Gender.Male)
+                    for (int i = 1; i <= 40000; i++)
                     {
-                        firstName.Append(RandomData._maleNames[new Random().Next(0, RandomData._maleNames.Length)]);
+                        StringBuilder firstName = new StringBuilder();
+                        StringBuilder lastName = new StringBuilder();
+                        Gender randomGender = (Gender)values.GetValue(random.Next(values.Length));
+
+
+                        if (randomGender == Gender.Male)
+                        {
+                            firstName.Append(RandomData._maleNames[new Random().Next(0, RandomData._maleNames.Length)]);
+                        }
+
+                        else if (randomGender == Gender.Female)
+                        {
+                            firstName.Append(RandomData._femaleNames[new Random().Next(0, RandomData._femaleNames.Length)]);
+                        }
+
+
+                        lastName.Append(RandomData._lastNames[new Random().Next(0, RandomData._lastNames.Length)]);
+
+                        childList.Add(new Child
+                        {
+                            Id = i,
+                            BirthDate = POSIXDate.RandomDateForChild(dateStart),
+                            Gender = randomGender,
+                            FirstName = firstName.ToString(),
+                            LastName = lastName.ToString(),
+
+                        });
                     }
-
-                    else if (randomGender == Gender.Female)
-                    {
-                        firstName.Append(RandomData._femaleNames[new Random().Next(0, RandomData._femaleNames.Length)]);
-                    }
-
-
-                    lastName.Append(RandomData._lastNames[new Random().Next(0, RandomData._lastNames.Length)]);
-
-                    childList.Add(new Child
-                    {
-                        Id = i,
-                        BirthDate = POSIXDate.RandomDateForChild(dateStart),
-                        Gender = randomGender,
-                        FirstName = firstName.ToString(),
-                        LastName = lastName.ToString(),
-
-                    });
+                    return childList;
                 }
-                return childList;
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    
+                    return new List<Child>();
+                }
             }
 
 

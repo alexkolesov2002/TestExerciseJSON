@@ -27,14 +27,22 @@ namespace TestExerciseJSON.Classes
         /// <returns>Desiarylized object</returns>
         public static dynamic DeserializeJSON(string Persons)
         {
-            var resultSerialize = JsonConvert.DeserializeObject<IEnumerable<Person>>(Persons);
-            if (resultSerialize != null)
+            try
             {
-                return resultSerialize;
+                var resultSerialize = JsonConvert.DeserializeObject<IEnumerable<Person>>(Persons);
+                if (resultSerialize != null)
+                {
+                    return resultSerialize;
+                }
+                else
+                {
+                    return new List<Person>();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return "";
+                Console.WriteLine(ex.ToString());
+                return new List<Person>();
             }
 
         }
@@ -46,12 +54,21 @@ namespace TestExerciseJSON.Classes
         /// <returns>Serialized JSON string</returns>
         public static string SerializeJSON<T>(IEnumerable<T> obj)
         {
-            string JSONstring = JsonConvert.SerializeObject(obj, new JsonSerializerSettings
+            try
             {
-                ContractResolver = _contractResolver,
-                Formatting = Formatting.Indented
-            });
-            return JSONstring;
+                string JSONstring = JsonConvert.SerializeObject(obj, new JsonSerializerSettings
+                {
+                    ContractResolver = _contractResolver,
+                    Formatting = Formatting.Indented
+                });
+                return JSONstring;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return "";
+            }
+           
         }
     }
 }

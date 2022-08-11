@@ -19,10 +19,19 @@ namespace TestExerciseJSON.Classes
         /// <returns> Date in POSIX format </returns>
         public static long RandomDateForChild(DateTime dateStart)
         {
-            int range = (DateTime.Today - dateStart).Days;
-            DateTime days = dateStart.AddDays(random.Next(range));
-            DateTimeOffset daysOff = new DateTimeOffset(days);
-            return daysOff.ToUnixTimeSeconds();
+            try
+            {
+                int range = (DateTime.Today - dateStart).Days;
+                DateTime days = dateStart.AddDays(random.Next(range));
+                DateTimeOffset daysOff = new DateTimeOffset(days);
+                return daysOff.ToUnixTimeSeconds();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return 0;
+            }
+
         }
         /// <summary>
         /// Returns a specific date in POSIX format from a random range of dates for Person
@@ -31,10 +40,19 @@ namespace TestExerciseJSON.Classes
         /// <returns>Date in POSIX format</returns>
         public static long RandomDateForPerson(DateTime date)
         {
-            int range = (new DateTime(2002, 1, 1) - date).Days; //Parent's minimum date of birth can be 2002
-            DateTime days = date.AddDays(random.Next(range));
-            DateTimeOffset daysOff = new DateTimeOffset(days);
-            return daysOff.ToUnixTimeSeconds();
+            try
+            {
+                int range = (new DateTime(2002, 1, 1) - date).Days; //Parent's minimum date of birth can be 2002
+                DateTime days = date.AddDays(random.Next(range));
+                DateTimeOffset daysOff = new DateTimeOffset(days);
+                return daysOff.ToUnixTimeSeconds();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return 0;
+            }
+
         }
         /// <summary>
         /// Calculating the difference in years between two dates
@@ -44,19 +62,26 @@ namespace TestExerciseJSON.Classes
         /// <returns>Integer count year</returns>
         public static int GetDifferenceInYears(DateTime startDate, DateTime endDate)
         {
-
-            int years = endDate.Year - startDate.Year;
-
-            if (startDate.Month == endDate.Month && endDate.Day < startDate.Day)
+            try
             {
-                years--;
-            }
-            else if (endDate.Month < startDate.Month)
-            {
-                years--;
-            }
+                int years = endDate.Year - startDate.Year;
 
-            return years;
+                if (startDate.Month == endDate.Month && endDate.Day < startDate.Day)
+                {
+                    years--;
+                }
+                else if (endDate.Month < startDate.Month)
+                {
+                    years--;
+                }
+
+                return years;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return 0;
+            }
         }
     }
 
